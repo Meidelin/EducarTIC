@@ -17,7 +17,11 @@
                 <input name="nombreUsuario" type="text" placeholder="Nombre de Usuario" required> <br><br>
                 <input name="pass" type="password" placeholder="Contraseña" required> <br><br>
 
-                <input type="submit" value="Iniciar Sesión" id="botones">
+                <input type="submit" value="Iniciar Sesión">
+
+                <button type="button" onClick="location.href = './usuario/registrarUsuario.php'">
+                    Registrarse
+                </button>
         
             </form>
         </section>
