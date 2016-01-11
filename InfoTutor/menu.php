@@ -1,5 +1,5 @@
 <?php 
-include './barraHerramientas.php';
+include './barraSesion.php';
 ?>
 <html>
     <head>
@@ -12,29 +12,7 @@ include './barraHerramientas.php';
     
     <br><br><br><br><br><br>
         
-    <center>
-       
-        <section>  
-        
-            <button type="button" onClick="location.href = ''">
-                Cursos Disponibles
-            </button>
-            
-            <button type="button" onClick="location.href = ''">
-                Cursos Matriculados
-            </button>
-            
-            <button type="button" onClick="location.href = ''">
-                Expendiente
-            </button>
-            
-            <button type="button" onClick="location.href = ''">
-                Configuración
-            </button>
-
-        </section>
     
-    </center>     
         
     </body>
 </html>

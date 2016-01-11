@@ -7,7 +7,7 @@ $pass=$_POST["pass"];
 
 //$validarUsuario=getUsuario($usuario);
 
-$tipoUsuario="estudiant";
+$tipoUsuario="estudiante";
 
 if($usuario != "Andres"){
     
@@ -32,6 +32,7 @@ if($usuario != "Andres"){
             session_start();
             $_SESSION['usuario']=$usuario;
             $_SESSION['pass']=$pass;
+            $_SESSION['tipo']=$tipoUsuario;
         
             header('Location: ../menu.php');
             
@@ -40,6 +41,7 @@ if($usuario != "Andres"){
             session_start();
             $_SESSION['usuario']=$usuario;
             $_SESSION['pass']=$pass;
+            $_SESSION['tipo']="admin";//$tipoUsuario;
         
             header('Location: ../menuAdmin.php');
             

@@ -15,7 +15,9 @@
             <form method="POST" action="sesion/validarLogIn.php">  
         
                 <input name="nombreUsuario" type="text" placeholder="Nombre de Usuario" required> <br><br>
-                <input name="pass" type="password" placeholder="Contraseña" required> <br><br>
+                <input name="pass" type="password" placeholder="Contraseña" required> <br>
+                <a href="./sesion/recuperarPass.php">¿olvidó su contraseña?</a>
+                <br><br>
 
                 <input type="submit" value="Iniciar Sesión">
 
