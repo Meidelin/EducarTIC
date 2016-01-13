@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include './sesion/comprobarConexion.php';
+include './negocio/comprobarConexion.php';
 comprobarConexion();
 ?>
 <html>

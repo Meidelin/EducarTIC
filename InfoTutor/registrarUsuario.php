@@ -12,15 +12,18 @@
     <center>
        
         <section>
-            <form method="POST" action="">  
+            <form method="POST" action="./negocio/LogicaUsuario.php">  
         
                 <input name="nombre" type="text" placeholder="Nombre" required> <br><br>
                 <input name="apellidos" type="text" placeholder="Apellidos" required> <br><br>
-                <input name="nombreUsuario" type="text" placeholder="Nombre de Usuario" required> <br><br>
+                <input name="usuario" type="text" placeholder="Usuario" required> <br><br>
                 <input name="correo" type="text" placeholder="Correo Electrónico" required> <br><br>
                 <input name="pass" type="password" placeholder="Contraseña" required> <br><br>
                 <input name="pass" type="password" placeholder="Comprobar Contraseña" required> <br><br>
-
+                
+                <input name="accion" type="hidden" value="1">
+                <input name="tipo" type="hidden" value="estudiante">
+                
                 <input type="submit" value="Registrarse">
 
                 <button type="button" onClick="location.href = '../index.php'">
