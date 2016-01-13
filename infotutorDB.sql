@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-01-2016 a las 18:13:56
+-- Tiempo de generación: 12-01-2016 a las 20:31:50
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `contenido` (
 --
 
 CREATE TABLE IF NOT EXISTS `cuestionario` (
-  `IdPrueba` int(11) NOT NULL
+  `IdCuestionario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `cuestionario` (
 
 CREATE TABLE IF NOT EXISTS `curso` (
   `Sigla` varchar(50) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `Nivel` int(11) NOT NULL
@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS `curso` (
 --
 
 CREATE TABLE IF NOT EXISTS `cursosregistrados` (
-  `idUsuario` int(11) NOT NULL,
-  `Sigla` varchar(50) NOT NULL
+  `Sigla` varchar(50) NOT NULL,
+  `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -83,12 +83,24 @@ CREATE TABLE IF NOT EXISTS `estudiante` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `foro`
+--
+
+CREATE TABLE IF NOT EXISTS `foro` (
+  `IdForo` int(11) NOT NULL,
+  `IdTema` int(11) NOT NULL,
+  `FechaCreacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `practica`
 --
 
 CREATE TABLE IF NOT EXISTS `practica` (
   `IdPractica` int(11) NOT NULL,
-  `IdUsuario` int(11) NOT NULL,
+  `IdCuestionario` int(11) NOT NULL,
   `RespuestasCorrectas` int(11) NOT NULL,
   `RespuestasIncorrectas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `practicausuario` (
 --
 
 CREATE TABLE IF NOT EXISTS `pregunta` (
-  `IdCuestionario` int(11) NOT NULL,
+  `IdPregunta` int(11) NOT NULL,
   `IdTema` int(11) NOT NULL,
   `Contenido` varchar(500) NOT NULL,
   `Respuesta` varchar(500) NOT NULL,
@@ -123,12 +135,53 @@ CREATE TABLE IF NOT EXISTS `pregunta` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `preguntaforo`
+--
+
+CREATE TABLE IF NOT EXISTS `preguntaforo` (
+  `IdPreguntaForo` int(11) NOT NULL,
+  `IdForo` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `Titulo` varchar(100) NOT NULL,
+  `Pregunta` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `preguntascuestionario`
+--
+
+CREATE TABLE IF NOT EXISTS `preguntascuestionario` (
+  `IdCuestionario` int(11) NOT NULL,
+  `IdPregunta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `preguntasusuario`
+--
+
+CREATE TABLE IF NOT EXISTS `preguntasusuario` (
+  `IdPreguntaUsuario` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `IdTema` int(11) NOT NULL,
+  `Contenido` varchar(500) NOT NULL,
+  `Respuestas` varchar(10000) NOT NULL,
+  `Tipo` varchar(100) NOT NULL,
+  `Estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prueba`
 --
 
 CREATE TABLE IF NOT EXISTS `prueba` (
   `IdPrueba` int(11) NOT NULL,
-  `IdUsuario` int(11) NOT NULL,
+  `IdCuestionario` int(11) NOT NULL,
   `Calificacion` decimal(10,0) NOT NULL,
   `PuntosTotales` int(11) NOT NULL,
   `PuntosObtenidos` int(11) NOT NULL,
@@ -145,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `prueba` (
 CREATE TABLE IF NOT EXISTS `pruebausuario` (
   `IdPrueba` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  `Fecha` date NOT NULL
+  `Fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -158,6 +211,32 @@ CREATE TABLE IF NOT EXISTS `recomendacion` (
   `IdRecomendacion` int(11) NOT NULL,
   `IdPrueba` int(11) NOT NULL,
   `Descripcion` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestaforo`
+--
+
+CREATE TABLE IF NOT EXISTS `respuestaforo` (
+  `IdRespuestaForo` int(11) NOT NULL,
+  `IdPreguntaForo` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `Respuesta` varchar(10000) NOT NULL,
+  `Calificacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestaincorrecta`
+--
+
+CREATE TABLE IF NOT EXISTS `respuestaincorrecta` (
+  `IdRespuestaIncorrecta` int(11) NOT NULL,
+  `IdPrueba` int(11) NOT NULL,
+  `Respuesta` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,9 +264,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `Correo` varchar(50) DEFAULT NULL,
   `Usuario` varchar(20) DEFAULT NULL,
   `Contrasena` varchar(20) DEFAULT NULL,
-  `Tipo` varchar(20) DEFAULT NULL,
-  `Sexo` char(2) DEFAULT NULL,
-  `Edad` int(10) DEFAULT NULL
+  `Tipo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -199,23 +276,25 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 ALTER TABLE `contenido`
   ADD PRIMARY KEY (`IdContenido`,`IdTema`),
+  ADD UNIQUE KEY `IdContenido` (`IdContenido`),
+  ADD UNIQUE KEY `IdContenido_2` (`IdContenido`),
   ADD KEY `IdTema` (`IdTema`);
 
 --
 -- Indices de la tabla `cuestionario`
 --
 ALTER TABLE `cuestionario`
-  ADD PRIMARY KEY (`IdPrueba`),
-  ADD UNIQUE KEY `IdPrueba` (`IdPrueba`);
+  ADD PRIMARY KEY (`IdCuestionario`),
+  ADD UNIQUE KEY `IdPrueba` (`IdCuestionario`);
 
 --
 -- Indices de la tabla `curso`
 --
 ALTER TABLE `curso`
-  ADD PRIMARY KEY (`Sigla`,`idUsuario`),
+  ADD PRIMARY KEY (`Sigla`,`IdUsuario`),
   ADD UNIQUE KEY `Nombre` (`Nombre`),
   ADD UNIQUE KEY `Sigla` (`Sigla`),
-  ADD UNIQUE KEY `idUsuario` (`idUsuario`);
+  ADD KEY `IdUsuario` (`IdUsuario`);
 
 --
 -- Indices de la tabla `cursosregistrados`
@@ -233,42 +312,76 @@ ALTER TABLE `estudiante`
   ADD UNIQUE KEY `IdUsuario` (`IdUsuario`);
 
 --
+-- Indices de la tabla `foro`
+--
+ALTER TABLE `foro`
+  ADD PRIMARY KEY (`IdForo`,`IdTema`),
+  ADD UNIQUE KEY `IdForo` (`IdForo`),
+  ADD KEY `IdTema` (`IdTema`);
+
+--
 -- Indices de la tabla `practica`
 --
 ALTER TABLE `practica`
-  ADD PRIMARY KEY (`IdPractica`,`IdUsuario`),
+  ADD PRIMARY KEY (`IdPractica`,`IdCuestionario`),
   ADD UNIQUE KEY `IdPractica` (`IdPractica`),
-  ADD UNIQUE KEY `IdUsuario` (`IdUsuario`);
+  ADD KEY `IdCuestionario` (`IdCuestionario`);
 
 --
 -- Indices de la tabla `practicausuario`
 --
 ALTER TABLE `practicausuario`
   ADD PRIMARY KEY (`IdPractica`,`IdUsuario`),
+  ADD UNIQUE KEY `IdPractica` (`IdPractica`,`IdUsuario`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
 --
 -- Indices de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  ADD PRIMARY KEY (`IdCuestionario`,`IdTema`),
+  ADD PRIMARY KEY (`IdPregunta`,`IdTema`),
   ADD UNIQUE KEY `Contenido` (`Contenido`),
-  ADD UNIQUE KEY `IdPregunta` (`IdCuestionario`),
-  ADD UNIQUE KEY `IdTema` (`IdTema`);
+  ADD UNIQUE KEY `IdPregunta` (`IdPregunta`),
+  ADD KEY `IdTema` (`IdTema`);
+
+--
+-- Indices de la tabla `preguntaforo`
+--
+ALTER TABLE `preguntaforo`
+  ADD PRIMARY KEY (`IdPreguntaForo`,`IdForo`,`IdUsuario`),
+  ADD UNIQUE KEY `IdPreguntaForo` (`IdPreguntaForo`),
+  ADD KEY `IdForo` (`IdForo`);
+
+--
+-- Indices de la tabla `preguntascuestionario`
+--
+ALTER TABLE `preguntascuestionario`
+  ADD PRIMARY KEY (`IdCuestionario`,`IdPregunta`),
+  ADD KEY `IdPregunta` (`IdPregunta`);
+
+--
+-- Indices de la tabla `preguntasusuario`
+--
+ALTER TABLE `preguntasusuario`
+  ADD PRIMARY KEY (`IdPreguntaUsuario`,`IdUsuario`,`IdTema`),
+  ADD UNIQUE KEY `IdPreguntaUsuario` (`IdPreguntaUsuario`),
+  ADD KEY `IdTema` (`IdTema`),
+  ADD KEY `IdUsuario` (`IdUsuario`);
 
 --
 -- Indices de la tabla `prueba`
 --
 ALTER TABLE `prueba`
-  ADD PRIMARY KEY (`IdPrueba`,`IdUsuario`),
+  ADD PRIMARY KEY (`IdPrueba`,`IdCuestionario`),
   ADD UNIQUE KEY `IdPrueba` (`IdPrueba`),
-  ADD UNIQUE KEY `IdUsuario` (`IdUsuario`);
+  ADD KEY `IdCuestionario` (`IdCuestionario`);
 
 --
 -- Indices de la tabla `pruebausuario`
 --
 ALTER TABLE `pruebausuario`
   ADD PRIMARY KEY (`IdPrueba`,`IdUsuario`),
+  ADD UNIQUE KEY `IdPrueba` (`IdPrueba`,`IdUsuario`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
 --
@@ -278,6 +391,22 @@ ALTER TABLE `recomendacion`
   ADD PRIMARY KEY (`IdRecomendacion`,`IdPrueba`),
   ADD UNIQUE KEY `IdRecomendacion` (`IdRecomendacion`),
   ADD UNIQUE KEY `IdPrueba` (`IdPrueba`);
+
+--
+-- Indices de la tabla `respuestaforo`
+--
+ALTER TABLE `respuestaforo`
+  ADD PRIMARY KEY (`IdRespuestaForo`,`IdPreguntaForo`,`IdUsuario`),
+  ADD UNIQUE KEY `IdRespuestaForo` (`IdRespuestaForo`),
+  ADD KEY `IdPreguntaForo` (`IdPreguntaForo`);
+
+--
+-- Indices de la tabla `respuestaincorrecta`
+--
+ALTER TABLE `respuestaincorrecta`
+  ADD PRIMARY KEY (`IdRespuestaIncorrecta`,`IdPrueba`),
+  ADD UNIQUE KEY `IdRespuestaIncorrecta` (`IdRespuestaIncorrecta`),
+  ADD KEY `IdPrueba` (`IdPrueba`);
 
 --
 -- Indices de la tabla `tema`
@@ -306,10 +435,50 @@ ALTER TABLE `usuario`
 ALTER TABLE `contenido`
   MODIFY `IdContenido` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `cuestionario`
+--
+ALTER TABLE `cuestionario`
+  MODIFY `IdCuestionario` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `foro`
+--
+ALTER TABLE `foro`
+  MODIFY `IdForo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `practica`
+--
+ALTER TABLE `practica`
+  MODIFY `IdPractica` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pregunta`
+--
+ALTER TABLE `pregunta`
+  MODIFY `IdPregunta` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `preguntaforo`
+--
+ALTER TABLE `preguntaforo`
+  MODIFY `IdPreguntaForo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `preguntasusuario`
+--
+ALTER TABLE `preguntasusuario`
+  MODIFY `IdPreguntaUsuario` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `prueba`
 --
 ALTER TABLE `prueba`
   MODIFY `IdPrueba` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `respuestaforo`
+--
+ALTER TABLE `respuestaforo`
+  MODIFY `IdRespuestaForo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `respuestaincorrecta`
+--
+ALTER TABLE `respuestaincorrecta`
+  MODIFY `IdRespuestaIncorrecta` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
@@ -329,7 +498,7 @@ ALTER TABLE `contenido`
 -- Filtros para la tabla `curso`
 --
 ALTER TABLE `curso`
-  ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cursosregistrados`
@@ -345,10 +514,16 @@ ALTER TABLE `estudiante`
   ADD CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `foro`
+--
+ALTER TABLE `foro`
+  ADD CONSTRAINT `foro_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `practica`
 --
 ALTER TABLE `practica`
-  ADD CONSTRAINT `practica_ibfk_1` FOREIGN KEY (`IdPractica`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `practica_ibfk_1` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `practicausuario`
@@ -361,14 +536,33 @@ ALTER TABLE `practicausuario`
 -- Filtros para la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  ADD CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pregunta_ibfk_2` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `preguntaforo`
+--
+ALTER TABLE `preguntaforo`
+  ADD CONSTRAINT `preguntaforo_ibfk_1` FOREIGN KEY (`IdForo`) REFERENCES `foro` (`IdForo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `preguntascuestionario`
+--
+ALTER TABLE `preguntascuestionario`
+  ADD CONSTRAINT `preguntascuestionario_ibfk_1` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `preguntascuestionario_ibfk_2` FOREIGN KEY (`IdPregunta`) REFERENCES `pregunta` (`IdPregunta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `preguntasusuario`
+--
+ALTER TABLE `preguntasusuario`
+  ADD CONSTRAINT `preguntasusuario_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `preguntasusuario_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `cursosregistrados` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `prueba`
 --
 ALTER TABLE `prueba`
-  ADD CONSTRAINT `prueba_ibfk_1` FOREIGN KEY (`IdPrueba`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `prueba_ibfk_2` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pruebausuario`
@@ -382,6 +576,18 @@ ALTER TABLE `pruebausuario`
 --
 ALTER TABLE `recomendacion`
   ADD CONSTRAINT `recomendacion_ibfk_1` FOREIGN KEY (`IdPrueba`) REFERENCES `prueba` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuestaforo`
+--
+ALTER TABLE `respuestaforo`
+  ADD CONSTRAINT `respuestaforo_ibfk_1` FOREIGN KEY (`IdPreguntaForo`) REFERENCES `preguntaforo` (`IdPreguntaForo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuestaincorrecta`
+--
+ALTER TABLE `respuestaincorrecta`
+  ADD CONSTRAINT `respuestaincorrecta_ibfk_1` FOREIGN KEY (`IdPrueba`) REFERENCES `prueba` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tema`
