@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
+-- Tiempo de generación: 11-01-2016 a las 18:13:56
+=======
 -- Tiempo de generación: 12-01-2016 a las 20:31:50
+>>>>>>> refs/remotes/origin/cambiosRafa
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -41,7 +45,11 @@ CREATE TABLE IF NOT EXISTS `contenido` (
 --
 
 CREATE TABLE IF NOT EXISTS `cuestionario` (
+<<<<<<< HEAD
+  `IdPrueba` int(11) NOT NULL
+=======
   `IdCuestionario` int(11) NOT NULL
+>>>>>>> refs/remotes/origin/cambiosRafa
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -130,6 +138,8 @@ CREATE TABLE IF NOT EXISTS `pregunta` (
   `Respuesta` varchar(500) NOT NULL,
   `Valor` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL
+<<<<<<< HEAD
+=======
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -171,6 +181,7 @@ CREATE TABLE IF NOT EXISTS `preguntasusuario` (
   `Respuestas` varchar(10000) NOT NULL,
   `Tipo` varchar(100) NOT NULL,
   `Estado` tinyint(1) NOT NULL
+>>>>>>> refs/remotes/origin/cambiosRafa
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -284,8 +295,13 @@ ALTER TABLE `contenido`
 -- Indices de la tabla `cuestionario`
 --
 ALTER TABLE `cuestionario`
+<<<<<<< HEAD
+  ADD PRIMARY KEY (`IdPrueba`),
+  ADD UNIQUE KEY `IdPrueba` (`IdPrueba`);
+=======
   ADD PRIMARY KEY (`IdCuestionario`),
   ADD UNIQUE KEY `IdPrueba` (`IdCuestionario`);
+>>>>>>> refs/remotes/origin/cambiosRafa
 
 --
 -- Indices de la tabla `curso`
@@ -514,6 +530,12 @@ ALTER TABLE `estudiante`
   ADD CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+<<<<<<< HEAD
+-- Filtros para la tabla `practica`
+--
+ALTER TABLE `practica`
+  ADD CONSTRAINT `practica_ibfk_1` FOREIGN KEY (`IdPractica`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
 -- Filtros para la tabla `foro`
 --
 ALTER TABLE `foro`
@@ -524,6 +546,7 @@ ALTER TABLE `foro`
 --
 ALTER TABLE `practica`
   ADD CONSTRAINT `practica_ibfk_1` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> refs/remotes/origin/cambiosRafa
 
 --
 -- Filtros para la tabla `practicausuario`
@@ -536,6 +559,10 @@ ALTER TABLE `practicausuario`
 -- Filtros para la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
+<<<<<<< HEAD
+  ADD CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pregunta_ibfk_2` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
   ADD CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -557,12 +584,17 @@ ALTER TABLE `preguntascuestionario`
 ALTER TABLE `preguntasusuario`
   ADD CONSTRAINT `preguntasusuario_ibfk_1` FOREIGN KEY (`IdTema`) REFERENCES `tema` (`IdTema`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `preguntasusuario_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `cursosregistrados` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> refs/remotes/origin/cambiosRafa
 
 --
 -- Filtros para la tabla `prueba`
 --
 ALTER TABLE `prueba`
+<<<<<<< HEAD
+  ADD CONSTRAINT `prueba_ibfk_1` FOREIGN KEY (`IdPrueba`) REFERENCES `cuestionario` (`IdPrueba`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
   ADD CONSTRAINT `prueba_ibfk_2` FOREIGN KEY (`IdCuestionario`) REFERENCES `cuestionario` (`IdCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> refs/remotes/origin/cambiosRafa
 
 --
 -- Filtros para la tabla `pruebausuario`
