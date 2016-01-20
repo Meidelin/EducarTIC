@@ -1,39 +1,27 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-    
-    <h1> ADMINISTRAR CURSO </h1>
-    
-    <br><br><br><br><br><br>
-        
-    <center>
-       
-        <section>
-            <form method="POST" action="./negocio/LogicaCurso.php">  
-        
-                <input name="nombre" type="text" placeholder="Nombre" required> <br><br>
-                <input name="apellidos" type="text" placeholder="Apellidos" required> <br><br>
-                <input name="usuario" type="text" placeholder="Usuario" required> <br><br>
-                <input name="correo" type="text" placeholder="Correo Electrónico" required> <br><br>
-                <input name="pass" type="password" placeholder="Contraseña" required> <br><br>
-                <input name="pass" type="password" placeholder="Comprobar Contraseña" required> <br><br>
-                
-                <input name="accion" type="hidden" value="1">
-                <input name="tipo" type="hidden" value="estudiante">
-                
-                <input type="submit" value="Registrarse">
+<?php 
+include 'AdministracionCursos.php';
+?>
+<center>
 
-                <button type="button" onClick="location.href = '../index.php'">
+<table border="1">
+<tr>
+ <th><h3>Insertar Curso </h2></th> 
+ </tr>
+      <section>
+        <!-- Formulario que envia un curso para guardarlo en la base de datos -->
+<tr>    <form method="POST" action="./logica/CursoLogica.php">  
+	
+             Nombre del curso: <input name="Nombre" type="text"> <br><br>
+             Descripcion:<br><br><textarea cols="30" rows="5" name="Descripcion" required></textarea><br><br>
+             Nivel curso: <input name="NivelCurso" type="text"> <br><br>
+                <input name="accion" type="hidden" value="1">                
+                <input type="submit" value="Guardar">
+
+                <button type="button" onClick="location.href = 'AdministracionCursos.php'">
                     Cancelar
-                </button>
+                </button></tr>
         
             </form>
         </section>
-    
-    </center>     
-        
-    </body>
-</html>
+    </table>
+</center>

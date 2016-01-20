@@ -7,9 +7,9 @@ include './barraSesion.php';
     </head>
     <body >
 
-        <h1>Administracion de Preguntas </h1>
+        <h1>Administracion de Temas </h1>
         <?php 
-    include './data/PreguntaData.php';
+    include './datos/TemaData.php';
         ?>
 
     </body>

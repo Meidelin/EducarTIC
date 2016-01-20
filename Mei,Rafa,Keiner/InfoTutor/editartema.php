@@ -1,6 +1,6 @@
 <?php 
 //include './barraSesion.php';
-include 'tema.php';
+include 'AdministracionTemas.php';
 
 //obtiene los datos del tema seleccionada que se envian desde TemaData.php
 if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
@@ -19,7 +19,7 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
     <section>
 
     <!-- Formulario que obtiene los datos del tema y los modifica -->
-    <tr>  <form method="POST" action="./negocio/TemaLogica.php">              
+    <tr>  <form method="POST" action="./logica/TemaLogica.php">              
             <!-- IdTema campo no editable -->
       <td>   Tema:<input name="IdTema" type="text"  
                         value= <?php echo $idtem; ?> readonly="readonly" required>                
@@ -29,12 +29,15 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
                         value= <?php  echo $sig;?> readonly="readonly" required> 
                         <br><br>
             <!-- Campos para modificar -->
-            Nombre Tema: <input name="NombreTema" type="text"  value= <?php  echo $nom;?>  required> <br><br>                
+            Nombre Tema:   <br><br>
+            <textarea cols="20" rows="1" name="NombreTema" required><?php  echo $nom;?> </textarea><br><br>
+
+        
                 <input name="accion" type="hidden" value="2">
                 
                 <input type="submit" value="Guardar">
 
-                <button type="button" onClick="location.href = 'tema.php'">
+                <button type="button" onClick="location.href = 'AdministracionTemas.php'">
                     Cancelar
                 </button></td> 
         

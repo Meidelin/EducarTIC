@@ -1,5 +1,5 @@
 <?php 
-include 'pregunta.php';
+include 'AdministracionPreguntas.php';
 ?>
 <center>
 
@@ -9,9 +9,9 @@ include 'pregunta.php';
  </tr>
       <section>
         <!-- Formulario que envia una pregunta para guardarla en la base de datos -->
-<tr>    <form method="POST" action="./negocio/PreguntaLogica.php">  
+<tr>    <form method="POST" action="./logica/PreguntaLogica.php">  
                 <!-- Combobox que obtiene los temas que existen en la base de datos -->
-               <td> Tema:<SELECT NAME="IdTema">
+               <td> Tema:<select name="IdTema">
                     <option>Seleccione un Tema</option>
                     <?php 
                        $con=conexion();
@@ -19,18 +19,23 @@ include 'pregunta.php';
                        $res=mysql_query($consulta, $con);
                     while($fila = mysql_fetch_array($res)){
                         /*Obtiene el idtema como el valor y se muestra el nombre */
-                        echo'<OPTION VALUE='.$fila['IdTema'].'>"'.$fila['Nombre'].'"</OPTION>';
+                        echo'<option value='.$fila['IdTema'].'>"'.$fila['Nombre'].'"</OPTION>';
                     }?>
-                </SELECT><br><br>
+                </select><br><br>
                 Contenido de la pregunta: <br><br><textarea cols="30" rows="5" name="Contenido" required></textarea> <br><br>
                 Respuesta:<br><br><textarea cols="30" rows="5" name="Respuesta" required></textarea><br><br>
-                Valor (puntaje):<input name="Valor" type="text"> <br><br>
-                Tipo<input name="Tipo" type="text" > <br><br>
+                Tipo:  <select id="Tipo" onchange="ShowSelected();" name="Tipo">>                
+                                <option>Seleccion el tipo de pregunta</option>                    
+                                <option value='1'>Seleccion unica</option>                   
+                                <option value='2'>Respuesta Breve</option>                 
+                       </select> 
+                   <br><br>
+               Valor (puntaje):<!-- <input name="Valor" value= "0" type="text"> <br><br> -->
                 
                 <input name="accion" type="hidden" value="1">                
                 <input type="submit" value="Guardar">
 
-                <button type="button" onClick="location.href = 'pregunta.php'">
+                <button type="button" onClick="location.href = 'AdministracionPreguntas.php'">
                     Cancelar
                 </button></tr>
         

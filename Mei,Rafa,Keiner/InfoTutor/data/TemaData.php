@@ -24,7 +24,7 @@ function eliminarTema($idTema, $sigla){
         echo "Se ha eliminado el tema ".$idTema." del curso ".$sigla." correctamente"; 
  
         // redirecciona a la pagina principal de administracion de preguntas  
-        echo "<script> location.href='./tema.php' </script>";
+        echo "<script> location.href='./AdministracionTemas.php' </script>";
 
         
 }
@@ -41,7 +41,7 @@ function insertarTema(Tema $tem){
     $res2=mysql_query($consulta2, $con2);
     echo 'Se ha insertado correctamente ';   
       // redirecciona a la pagina principal de administracion de preguntas    
-    echo "<script> location.href='../tema.php' </script>"; 
+    echo "<script> location.href='../AdministracionTemas.php' </script>"; 
      
 }
 
@@ -58,7 +58,7 @@ function editarTema(Tema $tem){
     echo 'Se ha mofificado correctamente ';                      
      
     // redirecciona a la pagina principal de administracion de preguntas  
-    echo "<script> location.href='../tema.php' </script>";
+    echo "<script> location.href='../AdministracionTemas.php' </script>";
 }
 
 ?>
@@ -68,9 +68,9 @@ function editarTema(Tema $tem){
 <table border="1">
 
 <tr>
-<th>IdTema</th>
+<!-- <th>IdTema</th> -->
 <th>Sigla Curso</th>
-<th>Nombre</th>
+<th>Nombre del Tema</th>
 <th></th>
 <th></th>
 
@@ -79,7 +79,7 @@ function editarTema(Tema $tem){
 <?php while($fila=mysql_fetch_array($res)){ ?>
 
 <tr><!-- Se obtienen los valores y se muestran en la tabla -->
-<td><?php echo $fila['IdTema']; ?></td>
+<!-- <td><?php //echo $fila['IdTema']; ?></td> -->
 <td><?php echo $fila['SiglaCursoTema']; ?></td>
 <td><?php echo $fila['Nombre']; ?></td>
 <!-- redirecciona al archivo editartema.php -->
@@ -87,7 +87,7 @@ function editarTema(Tema $tem){
         <input type="hidden" name="editar"  value="si" />
         <input type="hidden" name="idtem" value= <?php echo $fila['IdTema']; ?> /> <!-- envia IdTema-->
         <input type="hidden" name="sig" value= <?php echo $fila['SiglaCursoTema']; ?> /> <!-- envia SiglaCurso-->
-        <input type="hidden" name="nom" value= <?php echo $fila['Nombre']; ?> /> <!-- envia NombreTema-->
+        <input type="hidden" name="nom" value= "<?php echo $fila['Nombre']; ?>" /> <!-- envia NombreTema-->
        <input href="./editartema.php" type="submit" value="Editar" />
     </form>
 

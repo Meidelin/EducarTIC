@@ -1,5 +1,5 @@
 <?php 
-include 'tema.php';
+include 'AdministracionTemas.php';
 ?>
 <center>
 
@@ -7,7 +7,7 @@ include 'tema.php';
 <tr>
 <th><h3>Insertar Tema </h2></th>
       <section>
- <tr>   <form method="POST" action="./negocio/TemaLogica.php">  
+ <tr>   <form method="POST" action="./logica/TemaLogica.php">  
         
             <td> Sigla: <select name="SiglaCursoTema">
                        <option>Seleccione un Curso</option>
@@ -25,7 +25,7 @@ include 'tema.php';
                 <input name="accion" type="hidden" value="1">                
                 <input type="submit" value="Guardar">
 
-                <button type="button" onClick="location.href = 'tema.php'">
+                <button type="button" onClick="location.href = 'AdministracionTemas.php'">
                     Cancelar
                 </button></td> 
         

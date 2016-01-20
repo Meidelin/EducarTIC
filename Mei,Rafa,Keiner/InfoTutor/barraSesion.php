@@ -58,12 +58,16 @@ comprobarConexion();
                     Usuarios
                 </button>
 
-                <button type="button" onClick="location.href = './pregunta.php'">
-                    Preguntas
+                <button type="button" onClick="location.href = './AdministracionPreguntas.php'">
+                    Preguntas-admi
                 </button>
                 
-                 <button type="button" onClick="location.href = './tema.php'">
-                    Temas
+                 <button type="button" onClick="location.href = './AdministracionTemas.php'">
+                    Temas-admi
+                </button>
+				
+				 <button type="button" onClick="location.href = './AdministracionCursos.php'">
+                    Cursos-admi
                 </button>
                
                 <button type="button" onClick="location.href = ''">

@@ -1,52 +1,63 @@
-<?php
-
+<?
 class Curso{
-    
     var $sigla;
-    var $nombre;
+    var $nombreCurso;
     var $descripcion;
     var $nivel;
-    
-    function crearCurso($sigla, $nombre, $descripcion, $nivel) {
-        $this->sigla = $sigla;
-        $this->nombre = $nombre;
+	
+	function crearCurso($nombreCurso,$descripcion,$nivel,$listaTemas) {
+        $this->nombreCurso = $nombreCurso;
         $this->descripcion = $descripcion;
         $this->nivel = $nivel;
-        
     }
-
-    function crearUsuario() {}
-    
-    function getsigla() {
-        return $this->sigla;
-    }
-
-    function getNombre() {
-        return $this->nombre;
-    }
-
-    function getDescripcion() {
-        return $this->descripcion;
-    }
-
-    function getnivel() {
-        return $this->nivel;
-    }
-
-    function setsigla($sigla) {
+	function editarCurso($sigla,$nombreCurso,$descripcion,$nivel,$listaTemas) {
         $this->sigla = $sigla;
-    }
-
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
-    }
-
-    function setDescripcion($descripcion) {
+        $this->nombreCurso = $nombreCurso;
         $this->descripcion = $descripcion;
+        $this->nivel = $nivel;
     }
 
-    function setNivel($nivel) {
-        $this->nive; = $nivel;
-    }
+	function setSigla($id){
+    	$this->sigla = $id;
+	}
+
+	function getSigla(){
+    	echo $this->sigla;
+	}
+
+	function setNombreCurso($nombre){
+    	$this->nombreCurso = $nombreTema;
+	}
+
+	function getNombreCurso(){
+    	echo $this->nombreCurso;
+	}
+
+	function setDescripcion($descri){
+    	$this->descripcion = $descri;
+	}
+
+	function getDescripcion(){
+    	echo $this->descripcion;
+	}
+
+	function setNivel($nivel){
+    	$this->nivel = $nivel;
+	}
+
+	function getNivel(){
+    	echo $this->nivel;
+	}
+
+
+	function setListaTemas($listaTemas){
+
+		$this->listaTemas = listaTemas = $tema->getAll();
+    	$this->listaTemas = $listaTemas;
+	}
+
+	function getNivel(){
+    	echo $this->nivel;
+	}
 }
-
+?> 
