@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include 'Conexion.php';
 //include 'PreguntaData.php';
 
 $con=conexion();

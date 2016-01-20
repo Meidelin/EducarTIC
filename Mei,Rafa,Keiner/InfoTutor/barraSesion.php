@@ -61,7 +61,11 @@ comprobarConexion();
                 <button type="button" onClick="location.href = './pregunta.php'">
                     Preguntas
                 </button>
-            
+                
+                 <button type="button" onClick="location.href = './tema.php'">
+                    Temas
+                </button>
+               
                 <button type="button" onClick="location.href = ''">
                     Nuevas Preguntas
                 </button>
