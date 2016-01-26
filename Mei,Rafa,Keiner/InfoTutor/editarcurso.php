@@ -17,15 +17,15 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
 </tr>
   <section>
     <!-- Formulario que obtiene los datos del curso y los modifica -->
-   <tr> <form method="POST" action="./logica/CursoLogica.php">             
+   <tr> <form method="POST" action="./negocio/CursoLogica.php">             
       <!-- Sigla campo no editable -->
       <td> Sigla curso:<input name="Sigla" type="text"  
               value= <?php echo $sig;  ?>  readonly="readonly" required>  
               <br><br>
       <!-- Campos para modificar -->
-      Nombre: <input name="Nombre" type="text" value= <?php  echo $nom;?> required>               
+      Nombre: <br><br> <textarea style="resize:none;"cols="30" rows="1" name="Nombre" required><?php  echo $nom;?> </textarea>              
             <br><br>
-      Descripcion: <br><br> <textarea cols="30" rows="5" name="Descripcion" required><?php  echo $des;?> </textarea><br><br>
+      Descripcion: <br><br> <textarea style="resize:none;" cols="30" rows="5" name="Descripcion" required><?php  echo $des;?> </textarea><br><br>
       Nivel:<input name="NivelCurso" type="text" value= <?php  echo $niv;?> required>               
             <br><br>
 

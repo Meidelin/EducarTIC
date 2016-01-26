@@ -5,9 +5,6 @@ include 'Conexion.php';
 $con=conexion();
 $res = null;
 
-$consulta="select * from Pregunta";
-$res=mysql_query($consulta, $con);
-
    //llama al metodo eliminar pregunta
    //con los parametros enviados desde el boton eliminar
  if(isset($_POST['eliminar']) and $_POST['eliminar'] == 'si'){
@@ -78,63 +75,40 @@ function editarPregunta(Pregunta $preg){
     echo "<script> location.href='../AdministracionPreguntas.php' </script>";
 }
 
+// se obtienen todass las Preguntas
+function obtenerPregunta(){
+
+    $con=conexion();
+    $consulta='select * from Pregunta';
+    $res=mysql_query($consulta, $con);
+    return $res;
+}
+
+// se obtiene las Preguntas por tipo
+function obtenerPreguntaTipo($tipo){
+
+    $con=conexion();
+    $consulta='select * from Pregunta where Tipo="'.$tipo.'";';
+    $res=mysql_query($consulta, $con);
+    return $res;
+}
+
+// se obtiene las Preguntas por tema
+function obtenerPreguntaTema($tema){
+
+    $con=conexion();
+    $consulta='select * from Pregunta where IdTema="'.$tema.'";';
+    $res=mysql_query($consulta, $con);
+    return $res;
+}
+// se obtiene las Preguntas por enunciado
+function obtenerPreguntaEnunciado($enunciado){
+
+    $con=conexion();
+    $consulta='select * from Pregunta where Contenido="'.$enunciado.'";';
+    $res=mysql_query($consulta, $con);
+    return $res;
+}
+
 ?>
-
-<!-- Tabla con la lista de preguntas que sera incluida 
-    en la administracion de preguntas del archivo pregunta.php-->
-<table border="1">
-
-<tr>
-<!-- <th>IdPregunta</th>
-<th>IdTema</th> -->
-<th>Contenido</th>
-<th>Respuesta</th>
-<th>Valor</th>
-<th>Tipo</th>
-<th></th>
-<th></th>
-
-</tr>
-
-<?php while($fila=mysql_fetch_array($res)){ ?>
-
-<tr><!-- Se obtienen los valores y se muestran en la tabla -->
-<!-- <td><?php //echo $fila['IdPregunta']; ?></td>
-<td><?php //echo $fila['IdTema']; ?></td> -->
-<td><?php echo $fila['Contenido']; ?></td>
-<td><?php echo $fila['Respuesta']; ?></td>
-<td><?php echo $fila['Valor']; ?></td>
-<td><?php echo $fila['Tipo']; ?></td>
-<!-- redirecciona al archivo editarpregunta.php -->
-<td><form action="editarpregunta.php" method="post"><!-- boton editar que envia los parametros -->
-        <input type="hidden" name="editar"  value="si" />
-        <input type="hidden" name="idpreg" value= <?php echo $fila['IdPregunta']; ?> /> <!-- envia IdPregunta-->
-        <input type="hidden" name="idtem" value= <?php echo $fila['IdTema']; ?> /> <!-- envia IdTema-->
-        <input type="hidden" name="cont" value= "<?php echo $fila['Contenido']; ?>"/> <!-- envia Contenido-->
-        <input type="hidden" name="resp" value= "<?php echo $fila['Respuesta']; ?>" /><!-- envia Respuesta-->
-        <input type="hidden" name="val" value= <?php echo $fila['Valor']; ?> /> <!-- envia Valor-->
-        <input type="hidden" name="tip" value= <?php echo $fila['Tipo']; ?> /> <!-- envia Tipo-->
-       <input href="./editarpregunta.php" type="submit" value="Editar" />
-    </form>
-
-<td>
-    <form action="" method="post"><!-- boton eliminar que envia los parametros -->
-        <input type="hidden" name="eliminar"  value="si" />
-        <input type="hidden" name="idpreg" value= <?php echo $fila['IdPregunta']; ?> /> <!-- envia idpregunta-->
-        <input type="hidden" name="idtem" value= <?php echo $fila['IdTema']; ?> /> <!-- envia idtema -->
-       <input type="submit" value="Eliminar" />
-    </form>
-</td>
-
-</tr>
-
-
-<?php } ?>
-</table>
-
-<!-- envia al archivo insertarpregunta -->
-<a href="./insertarpregunta.php" >Agregar nueva pregunta</a>
-
-
-
 <?php mysql_close($con); ?>

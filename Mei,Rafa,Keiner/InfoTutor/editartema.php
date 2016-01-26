@@ -30,7 +30,7 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
                         <br><br>
             <!-- Campos para modificar -->
             Nombre Tema:   <br><br>
-            <textarea cols="20" rows="1" name="NombreTema" required><?php  echo $nom;?> </textarea><br><br>
+            <textarea style="resize:none;" cols="20" rows="1" name="NombreTema" required><?php  echo $nom;?> </textarea><br><br>
 
         
                 <input name="accion" type="hidden" value="2">

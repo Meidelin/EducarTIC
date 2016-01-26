@@ -10,8 +10,7 @@ include './barraSesion.php';
     
     <h1> MENÚ ADMINISTRACIÓN </h1>
     
-    <br><br><br><br><br><br>
-        
-    
+    <br><br><br>
+       
         
     </body>

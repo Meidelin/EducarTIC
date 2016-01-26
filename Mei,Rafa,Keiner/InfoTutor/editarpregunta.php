@@ -20,7 +20,7 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
 </tr>
   <section>
     <!-- Formulario que obtiene los datos de la pregunta y los modifica -->
-   <tr> <form method="POST" action="./logica/PreguntaLogica.php">             
+   <tr> <form method="POST" action="./negocio/PreguntaLogica.php">             
       <!-- IdPregunta campo no editable -->
       <td> Pregunta:<input name="IdPregunta" type="text"  
               value= <?php echo $idpreg;  ?>  readonly="readonly" required>  
@@ -30,8 +30,8 @@ if(isset($_POST['editar']) and $_POST['editar'] == 'si'){
              value= <?php  echo $idtem;?> readonly="readonly" required>               
             <br><br>
       <!-- Campos para modificar -->
-      Contenido de la pregunta: <br><br> <textarea cols="30" rows="5" name="Contenido" required><?php  echo $cont;?> </textarea><br><br>
-      Respuesta: <br><br><textarea cols="30" rows="5" name="Respuesta" required><?php  echo $resp;?> </textarea><br><br>
+      Contenido de la pregunta: <br><br> <textarea style="resize:none;" cols="30" rows="5" name="Contenido" required><?php  echo $cont;?> </textarea><br><br>
+      Respuesta: <br><br><textarea style="resize:none;" cols="30" rows="5" name="Respuesta" required><?php  echo $resp;?> </textarea><br><br>
       <!-- <input name="Valor" type="text"  value= <?php  echo $val;?>  required> <br><br> -->
       Tipo <select id="Tipo" onchange="ShowSelected();" name="Tipo">>                
                                 <option>Seleccion el tipo de pregunta</option>                    

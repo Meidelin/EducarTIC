@@ -7,7 +7,7 @@ include 'AdministracionTemas.php';
 <tr>
 <th><h3>Insertar Tema </h2></th>
       <section>
- <tr>   <form method="POST" action="./logica/TemaLogica.php">  
+ <tr>   <form method="POST" action="./negocio/TemaLogica.php">  
         
             <td> Sigla: <select name="SiglaCursoTema">
                        <option>Seleccione un Curso</option>

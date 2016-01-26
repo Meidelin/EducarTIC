@@ -8,10 +8,10 @@ $accion=$_POST['accion'];
 //switch que recibe una accion para cada caso
 switch ($accion) {
     case 1:
-        guardarPregunta();
+        guardarCurso();
         break; 
     case 2:
-        modificarPregunta();
+        modificarCurso();
           break;  
     }
 
@@ -26,7 +26,7 @@ function guardarCurso(){
     
     //crea el objeto curso
     $cur=new Curso();
-    $cur->crearCurso($nombre, $descripcion, $nivel);
+    $cur->crearCurso($sigla, $nombre, $descripcion, $nivel);
     
     //ejecuta la funcion en PreguntaData que inserta un curso
     insertarCurso($cur);
@@ -37,7 +37,7 @@ function modificarCurso(){
     $sigla=$_POST['Sigla'];
     $nombre=$_POST['Nombre'];
     $descripcion=$_POST['Descripcion'];
-    $nivel=$_POST['NivelCurso']
+    $nivel=$_POST['NivelCurso'];
     
     $cur=new Curso();
     $cur->editarCurso($sigla,$nombre, $descripcion, $nivel);
@@ -46,3 +46,5 @@ function modificarCurso(){
     editarCurso($cur);
     
 }
+
+?>

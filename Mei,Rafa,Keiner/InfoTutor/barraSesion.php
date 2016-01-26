@@ -13,7 +13,7 @@ comprobarConexion();
         <title></title>
     </head>
     <body>
-    
+    <br><br>
     <section style="float: right;">
 
 <?php if($_SESSION['tipo']=="estudiante"){ //si es un estudiante carga un menu para estudiantes
@@ -43,6 +43,8 @@ comprobarConexion();
                 Configuración
             </button>
 
+         
+
             <?php }else{ //si es un administrador carga un menu de administrador
                 ?>
 
@@ -53,22 +55,10 @@ comprobarConexion();
                 <button type="button" onClick="location.href = ''">
                     Cursos 
                 </button>
-            
-                <button type="button" onClick="location.href = './AdministracionUsuarios.php'">
-                    Usuarios
-                </button>
-
-                <button type="button" onClick="location.href = './AdministracionPreguntas.php'">
-                    Preguntas-admi
-                </button>
-                
-                 <button type="button" onClick="location.href = './AdministracionTemas.php'">
-                    Temas-admi
-                </button>
+                        
+                              
 				
-				 <button type="button" onClick="location.href = './AdministracionCursos.php'">
-                    Cursos-admi
-                </button>
+				 
                
                 <button type="button" onClick="location.href = ''">
                     Nuevas Preguntas
@@ -78,6 +68,7 @@ comprobarConexion();
                     Configuración
                 </button>
 
+
             <?php }?>
         
         Usuario: <?php echo $_SESSION['usuario'];?> 
@@ -85,6 +76,26 @@ comprobarConexion();
         <button type="button" onClick="location.href = 'negocio/cerrarSesion.php'">
             Cerrar Sesión
         </button>
+
+           <br><br>
+             <center>
+                <button type="button" onClick="location.href = './AdministracionUsuarios.php'">
+                    Usuarios
+                </button>
+
+                <button type="button" onClick="location.href = './AdministracionCursos.php'">
+                    Cursos-admi
+                </button>
+
+                <button type="button" onClick="location.href = './AdministracionTemas.php'">
+                    Temas-admi
+                </button>
+
+                <button type="button" onClick="location.href = './AdministracionPreguntas.php'">
+                    Preguntas-admi
+                </button>
+       </center>
+              
         
     </section>    
         

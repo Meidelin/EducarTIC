@@ -9,7 +9,7 @@ include 'AdministracionPreguntas.php';
  </tr>
       <section>
         <!-- Formulario que envia una pregunta para guardarla en la base de datos -->
-<tr>    <form method="POST" action="./logica/PreguntaLogica.php">  
+<tr>    <form method="POST" action="./negocio/PreguntaLogica.php">  
                 <!-- Combobox que obtiene los temas que existen en la base de datos -->
                <td> Tema:<select name="IdTema">
                     <option>Seleccione un Tema</option>
@@ -22,8 +22,8 @@ include 'AdministracionPreguntas.php';
                         echo'<option value='.$fila['IdTema'].'>"'.$fila['Nombre'].'"</OPTION>';
                     }?>
                 </select><br><br>
-                Contenido de la pregunta: <br><br><textarea cols="30" rows="5" name="Contenido" required></textarea> <br><br>
-                Respuesta:<br><br><textarea cols="30" rows="5" name="Respuesta" required></textarea><br><br>
+                Contenido de la pregunta: <br><br><textarea style="resize:none;" cols="30" rows="5" name="Contenido" required></textarea> <br><br>
+                Respuesta:<br><br><textarea style="resize:none;" cols="30" rows="5" name="Respuesta" required></textarea><br><br>
                 Tipo:  <select id="Tipo" onchange="ShowSelected();" name="Tipo">>                
                                 <option>Seleccion el tipo de pregunta</option>                    
                                 <option value='1'>Seleccion unica</option>                   
