@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`pregunta` (
   PRIMARY KEY (`IdPregunta`),
   INDEX `IdTemaP` (`IdTemaP` ASC),
   UNIQUE INDEX `Enunciado_UNIQUE` (`Enunciado` ASC),
-  CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTemaP`) REFERENCES `infotutor`.`tema` (`IdTema`)
+  CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTemaP`) REFERENCES `lenggrupo4`.`tema` (`IdTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
