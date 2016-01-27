@@ -1,7 +1,7 @@
 <?php
 
 include '../dominio/Pregunta.php';
-include '../datos/PreguntaData.php';
+include '../data/PreguntaData.php';
 
 $accion=$_POST['accion'];
 
@@ -20,8 +20,14 @@ function guardarPregunta(){
     $idtema=$_POST['IdTema'];
     $contenido=$_POST['Contenido'];
     $respuesta=$_POST['Respuesta'];
-    $valor=$_POST['Valor'];
+    $valor=0;
     $tipo=$_POST['Tipo'];
+
+    if($tipo==1){
+        $valor=5;
+    }else{
+        $valor=10;
+    }
     
     //crea el objeto pregunta
     $preg=new Pregunta();
@@ -37,8 +43,15 @@ function modificarPregunta(){
     $idtema=$_POST['IdTema'];
     $contenido=$_POST['Contenido'];
     $respuesta=$_POST['Respuesta'];
-    $valor=$_POST['Valor'];
+    $valor=0;
     $tipo=$_POST['Tipo'];
+
+
+    if($tipo==1){
+        $valor=5;
+    }else{
+        $valor=10;
+    }
     
     $preg=new Pregunta();
     $preg->editarPregunta($idpreg, $idtema, $contenido, $respuesta, $tipo, $valor);

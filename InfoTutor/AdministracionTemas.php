@@ -12,7 +12,7 @@ include './barraSesion.php';
         include './data/TemaData.php';
 
         // muestra todos los temas 
-	        if (isset($_POST['buscartema']) and $_POST['seleccion'] == 'Todo'){                    
+	        if (isset($_POST['vertodos'])){                    
            	           $res=obtenerTema();
 
 	        }else  if(isset($_POST['buscartema']) and $_POST['seleccion'] == 'Sigla'){
@@ -39,6 +39,11 @@ include './barraSesion.php';
     <input name="tema" type="text"> 
     <input type="submit" value="Buscar"> </h4>
     </form>
+    
+ <form method="POST" action="">  
+       <input type="hidden" name="vertodos" />
+       <input type="submit" value="Ver todos"> 
+    </form>
 <br><br>
 
 
@@ -53,7 +58,7 @@ include './barraSesion.php';
 	</tr>
 
 <!-- Se obtienen los datos que ha generado la consulta-->
-<?php while($fila=mysql_fetch_array($res)){ ?>
+<?php while($fila=mysqli_fetch_array($res)){ ?>
 <tr><!-- Se obtienen los valores y se muestran en la tabla -->
 	<td><?php echo $fila['siglaCursoT']; ?></td>
 	<td><?php echo $fila['NombreT']; ?></td>

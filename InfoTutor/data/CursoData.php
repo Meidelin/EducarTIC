@@ -2,9 +2,7 @@
 
 include 'Conexion.php';
 
-$con=conexion();
-$res = null;
-
+$res=null;
 
 if(isset($_POST['eliminar']) and $_POST['eliminar'] == 'si'){
            //se llama a la funcion eliminar
@@ -13,28 +11,29 @@ if(isset($_POST['eliminar']) and $_POST['eliminar'] == 'si'){
 
 //se  elimina un curso    
 function eliminarCurso($sig){
-        $con=conexion();
+
+        $con = getConexion();
         //consulta que llama al procedimiento almacenado pa_eliminar_curso
-        $consulta="call pa_eliminar_curso (".$sig.");";
-        mysql_query($consulta, $con);
+        $consulta="call pa_eliminar_curso ('".$sig."');";
+        $res = mysqli_query($con,$consulta);
         echo "Se ha eliminado el Curso ".$sig." correctamente"; 
- 
+
         // redirecciona a la pagina principal de administracion de cursos  
         echo "<script> location.href='./AdministracionCursos.php' </script>";       
 }
 
 //se inserta un curso
 function insertarCurso(Curso $cur){
-    $con2=conexion();
-
+   
+    $con = getConexion();
     $s=$cur->sigla;
-    $no=$cur->nombreCurso;
+    $no=$cur->nombre;
     $d=$cur->descripcion;
     $ni=$cur->nivel;
 
     //consulta que llama al procedimiento almacenado pa_insertar_curso
-    $consulta2='call pa_insertar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
-    $res2=mysql_query($consulta2, $con2);
+    $consulta='call pa_insertar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
+    $res = mysqli_query($con,$consulta);
     echo 'Se ha insertado correctamente ';   
       // redirecciona a la pagina principal de administracion de cursos    
     echo "<script> location.href='../AdministracionCursos.php' </script>"; 
@@ -43,17 +42,17 @@ function insertarCurso(Curso $cur){
 
 //se modifica un curso
 function editarCurso(Curso $cur){
-    $con2=conexion();
+    $con = getConexion();
    
     $s=$cur->sigla;
-    $no=$cur->nombreCurso;
+    $no=$cur->nombre;
     $d=$cur->descripcion;
     $ni=$cur->nivel;
 
 
-    $consulta2='call pa_modificar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
-    $res2=mysql_query($consulta2, $con2);
-    echo 'Se ha mofificado correctamente ';                      
+    $consulta='call pa_modificar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
+    $res = mysqli_query($con,$consulta);
+    echo 'Se ha mofificado correctamente ';                 
      
     // redirecciona a la pagina principal de administracion de cursos  
     echo "<script> location.href='../AdministracionCursos.php' </script>";
@@ -61,31 +60,32 @@ function editarCurso(Curso $cur){
 
 // se obtienen todos los cursos
 function obtenerCurso(){
-
-    $con=conexion();
-    $consulta='select * from Curso';
-    $res=mysql_query($consulta, $con);
+   
+    $con = getConexion();
+    $consulta="select * from curso;";
+    $res = mysqli_query($con,$consulta);
+    //desconectar($con);
     return $res;
 }
 
 // se obtiene el curso por sigla
 function obtenerCursoSigla($sig){
 
-    $con=conexion();
-    $consulta='select * from Curso where Sigla="'.$sig.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    //$consulta=;"call pa_eliminar_curso ('".$sig."');"; 
+    $res = mysqli_query($con,"select * from curso where Sigla='".$sig."';");
+    //desconectar($con);
     return $res;
 }
 
 // se obtiene el curso por nombre
 function obtenerCursoNombre($nom){
 
-    $con=conexion();
-    $consulta='select * from Curso where Nombre="'.$nom.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta="select * from curso where Nombre='".$nom."';";
+    $res=mysqli_query($con,$consulta);
     return $res;
 }
 
 ?>
 
-<?php mysql_close($con); ?>

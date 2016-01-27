@@ -12,10 +12,10 @@ include 'AdministracionTemas.php';
             <td> Sigla: <select name="SiglaCursoTema">
                        <option>Seleccione un Curso</option>
                        <?php 
-                       $con=conexion();
-                       $consulta="select Sigla, Nombre from Curso";
-                       $res=mysql_query($consulta, $con);
-                       while($fila = mysql_fetch_array($res)){
+                       $con=getConexion();
+                       $consulta="select Sigla, Nombre from curso";
+                       $res=mysqli_query($con,$consulta);
+                       while($fila = mysqli_fetch_array($res)){
                         /*Obtiene el idtema como el valor y se muestra el nombre */
                         echo'<OPTION VALUE='.$fila['Sigla'].'>"'.$fila['Nombre'].'"</OPTION>';
                        }?>

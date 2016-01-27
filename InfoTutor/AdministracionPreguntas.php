@@ -12,7 +12,7 @@ include './barraSesion.php';
         include './data/PreguntaData.php';
 
          // muestra todas las preguntas 
-	        if (isset($_POST['buscarpregunta']) and $_POST['seleccion'] == 'Todo'){                    
+	        if (isset($_POST['vertodos'])){                    
            	           $res=obtenerPregunta();
 
 	        }else  if(isset($_POST['buscarpregunta']) and $_POST['seleccion'] == 'Tipo'){
@@ -38,11 +38,15 @@ include './barraSesion.php';
  			<option value="Tipo">Tipo</option>
  			<option value="Tema">Tema</option>
  			<option value="Enunciado">Enunciado</option>
- 			<option value="Todo">Ver todo</option>
  		</select>
  		<input name="pregunta" type="text">
  		<input type="submit" value="Buscar"> </h4>
  </form>
+
+  <form method="POST" action="">  
+       <input type="hidden" name="vertodos" />
+       <input type="submit" value="Ver todos"> 
+    </form>
 
 <br><br>
 
@@ -60,7 +64,7 @@ include './barraSesion.php';
 	</tr>
 	
 	<!-- Se obtienen los datos que ha generado la consulta-->
-	<?php while($fila=mysql_fetch_array($res)){ ?>
+	<?php while($fila=mysqli_fetch_array($res)){ ?>
 
 	<tr>
 		<td><?php echo $fila['Enunciado']; ?></td>

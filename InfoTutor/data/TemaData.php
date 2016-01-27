@@ -1,8 +1,7 @@
 <?php
 
 include 'Conexion.php';
-//se crea la conexion
-$con=conexion();
+
 $res = null;
 
    //llama al metodo eliminar tema
@@ -13,10 +12,10 @@ $res = null;
 
 //se  elimina un tema   
 function eliminarTema($idTema, $sigla){
-        $con=conexion();
+        $con = getConexion();
         //consulta que llama al procedimiento almacenado pa_eliminar_tema
         $consulta="call pa_eliminar_tema (".$idTema.",'".$sigla."');";
-        mysql_query($consulta, $con);
+        $res = mysqli_query($con,$consulta);
         echo "Se ha eliminado el tema ".$idTema." del curso ".$sigla." correctamente"; 
  
         // redirecciona a la pagina principal de administracion de Temas  
@@ -25,13 +24,14 @@ function eliminarTema($idTema, $sigla){
 
 //se inserta un Tema
 function insertarTema(Tema $tem){
-    $con2=conexion();
+    $con = getConexion();
     $s=$tem->siglaCurso;
     $n=$tem->nombreTema;
 
     //consulta que llama al procedimiento almacenado pa_insertar_tema
-    $consulta2="call pa_insertar_tema('$s','$n');";
-    $res2=mysql_query($consulta2, $con2);
+    //'call pa_insertar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
+    $consulta="call pa_insertar_tema ('".$s."','".$n."');";
+     $res = mysqli_query($con,$consulta);
     echo 'Se ha insertado correctamente ';   
       // redirecciona a la pagina principal de administracion de Temas    
     echo "<script> location.href='../AdministracionTemas.php' </script>"; 
@@ -40,14 +40,15 @@ function insertarTema(Tema $tem){
 
 //se modifica un Tema
 function editarTema(Tema $tem){
-    $con2=conexion();
+   
+   $con = getConexion();
 
     $te=$tem->idTema;
     $s=$tem->siglaCurso;
     $n=$tem->nombreTema;
 
-    $consulta2="call pa_modificar_tema('$te','$s','$n');";
-    $res2=mysql_query($consulta2, $con2);
+    $consulta="call pa_modificar_tema('$te','$s','$n');";
+    $res = mysqli_query($con,$consulta);
     echo 'Se ha mofificado correctamente ';                      
      
     // redirecciona a la pagina principal de administracion de temas  
@@ -58,32 +59,29 @@ function editarTema(Tema $tem){
 // se obtienen todos los temas
 function obtenerTema(){
 
-    $con=conexion();
-    $consulta='select * from Tema';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta="select * from tema;";
+    $res = mysqli_query($con,$consulta);
     return $res;
 }
 
 // se obtiene el curso por sigla
 function obtenerTemaSigla($sig){
 
-    $con=conexion();
-    $consulta='select * from Tema where SiglaCursoTema="'.$sig.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from tema where SiglaCursoT="'.$sig.'";';
+    $res = mysqli_query($con,$consulta);
     return $res;
 }
 
 // se obtiene el curso por nombre
 function obtenerTemaNombre($nom){
 
-    $con=conexion();
-    $consulta='select * from Tema where Nombre="'.$nom.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from tema where NombreT="'.$nom.'";';
+    $res = mysqli_query($con,$consulta);
     return $res;
 }
 
 
 ?>
-
-
-<?php mysql_close($con); ?>

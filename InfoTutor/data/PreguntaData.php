@@ -2,7 +2,6 @@
 
 include 'Conexion.php';
 //se crea la conexion
-$con=conexion();
 $res = null;
 
    //llama al metodo eliminar pregunta
@@ -14,10 +13,10 @@ $res = null;
 
 //se  elimina una pregunta    
 function eliminarPregunta($idPregunta, $idTema){
-        $con=conexion();
+        $con = getConexion();
         //consulta que llama al procedimiento almacenado pa_eliminar_pregunta
         $consulta="call pa_eliminar_pregunta (".$idPregunta.",".$idTema.");";
-        mysql_query($consulta, $con);
+        $res = mysqli_query($con,$consulta);
         echo "Se ha eliminado la pregunta ".$idPregunta." del tema ".$idTema." correctamente"; 
  
         // redirecciona a la pagina principal de administracion de preguntas  
@@ -28,22 +27,17 @@ function eliminarPregunta($idPregunta, $idTema){
 
 //se inserta una pregunta
 function insertarPregunta(Pregunta $preg){
-    $con2=conexion();
+    $con = getConexion();
     $te=$preg->idTema;
     $c=$preg->contenido;
     $r=$preg->respuesta;
     $v=$preg->valor;
     $ti=$preg->tipo;
 
-    if($ti==1){
-        $v=5;
-    }else{
-        $v=10;
-    }
-
     //consulta que llama al procedimiento almacenado pa_insertar_pregunta
-    $consulta2="call pa_insertar_pregunta('$te','$c','$r','$v','$ti');";
-    $res2=mysql_query($consulta2, $con2);
+    //'call pa_insertar_curso("'.$s.'","'.$no.'","'.$d.'",'.$ni.');';
+    $consulta='call pa_insertar_pregunta('.$te.',"'.$c.'","'.$r.'",'.$v.','.$ti.');';
+     $res = mysqli_query($con,$consulta);
     echo 'Se ha insertado correctamente ';   
       // redirecciona a la pagina principal de administracion de preguntas    
     echo "<script> location.href='../AdministracionPreguntas.php' </script>"; 
@@ -52,7 +46,7 @@ function insertarPregunta(Pregunta $preg){
 
 //se modifica una pregunta
 function editarPregunta(Pregunta $preg){
-    $con2=conexion();
+    $con = getConexion();
 
     $p=$preg->idPregunta;
     $te=$preg->idTema;
@@ -60,15 +54,10 @@ function editarPregunta(Pregunta $preg){
     $r=$preg->respuesta;
     $v=$preg->valor;
     $ti=$preg->tipo;
+     
 
-     if($ti==1){
-        $v=5;
-    }else{
-        $v=10;
-    }
-
-    $consulta2="call pa_modificar_pregunta('$p','$te','$c','$r','$v','$ti');";
-    $res2=mysql_query($consulta2, $con2);
+    $consulta="call pa_modificar_pregunta('$p','$te','$c','$r','$v','$ti');";
+    $res = mysqli_query($con,$consulta);
     echo 'Se ha mofificado correctamente ';                      
      
     // redirecciona a la pagina principal de administracion de preguntas  
@@ -78,37 +67,36 @@ function editarPregunta(Pregunta $preg){
 // se obtienen todass las Preguntas
 function obtenerPregunta(){
 
-    $con=conexion();
-    $consulta='select * from Pregunta';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from pregunta';
+    $res = mysqli_query($con,$consulta);
     return $res;
 }
 
 // se obtiene las Preguntas por tipo
 function obtenerPreguntaTipo($tipo){
 
-    $con=conexion();
-    $consulta='select * from Pregunta where Tipo="'.$tipo.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from pregunta where Tipo="'.$tipo.'";';
+    $res=mysqli_query($con,$consulta);
     return $res;
 }
 
 // se obtiene las Preguntas por tema
 function obtenerPreguntaTema($tema){
 
-    $con=conexion();
-    $consulta='select * from Pregunta where IdTema="'.$tema.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from pregunta where IdTemaP="'.$tema.'";';
+    $res=mysqli_query($con,$consulta);
     return $res;
 }
 // se obtiene las Preguntas por enunciado
 function obtenerPreguntaEnunciado($enunciado){
 
-    $con=conexion();
-    $consulta='select * from Pregunta where Contenido="'.$enunciado.'";';
-    $res=mysql_query($consulta, $con);
+    $con = getConexion();
+    $consulta='select * from pregunta where Enunciado="'.$enunciado.'";';
+    $res=mysqli_query($con,$consulta);
     return $res;
 }
 
 ?>
-<?php mysql_close($con); ?>

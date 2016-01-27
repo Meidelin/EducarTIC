@@ -14,12 +14,12 @@ include 'AdministracionPreguntas.php';
                <td> Tema:<select name="IdTema">
                     <option>Seleccione un Tema</option>
                     <?php 
-                       $con=conexion();
-                       $consulta="select IdTema, Nombre from Tema";
-                       $res=mysql_query($consulta, $con);
-                    while($fila = mysql_fetch_array($res)){
+                       $con=getConexion();
+                       $consulta="select IdTema, NombreT from tema";
+                       $res=mysqli_query($con,$consulta);
+                    while($fila = mysqli_fetch_array($res)){
                         /*Obtiene el idtema como el valor y se muestra el nombre */
-                        echo'<option value='.$fila['IdTema'].'>"'.$fila['Nombre'].'"</OPTION>';
+                        echo'<option value='.$fila['IdTema'].'>"'.$fila['NombreT'].'"</OPTION>';
                     }?>
                 </select><br><br>
                 Contenido de la pregunta: <br><br><textarea style="resize:none;" cols="30" rows="5" name="Contenido" required></textarea> <br><br>

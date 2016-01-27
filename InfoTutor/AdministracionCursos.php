@@ -12,7 +12,7 @@ include './barraSesion.php';
             include './data/CursoData.php';
 
             // muestra todos los cursos 
-	        if (isset($_POST['buscarcurso']) and $_POST['seleccion'] == 'Todo'){                    
+	        if (isset($_POST['vertodos']) ){                    
            	           $res=obtenerCurso();
 
 	        }else  if(isset($_POST['buscarcurso']) and $_POST['seleccion'] == 'Sigla'){
@@ -33,12 +33,17 @@ include './barraSesion.php';
             <select name="seleccion">
                 <option value="Sigla">Sigla</option>
                 <option value="Nombre">Nombre</option>
-                <option value="Todo">Ver todo</option>
             </select>
 
     <input name="curso" type="text"> 
     <input type="submit" value="Buscar"> </h4>
     </form>
+
+  <form method="POST" action="">  
+       <input type="hidden" name="vertodos" />
+       <input type="submit" value="Ver todos"> 
+    </form>
+
 <br><br>
 
 
@@ -55,7 +60,7 @@ include './barraSesion.php';
     </tr>
 
 <!-- Se obtienen los datos que ha generado la consulta-->
-<?php while($fila=mysql_fetch_array($res)){ ?>
+<?php while($fila=mysqli_fetch_array($res)){ ?>
     <tr>
         <td><?php echo $fila['Sigla']; ?></td>
         <td><?php echo $fila['Nombre']; ?></td>
@@ -88,6 +93,6 @@ include './barraSesion.php';
 <!-- envia al archivo insertarcurso-->
 <a href="./insertarcurso.php" >Agregar nuevo curso</a>
 
-
+<?php //mysql_close($con); ?>
     </body>
 </html>
