@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,16 +12,16 @@
         <h1> INICIAR SESIÓN </h1>
        
         <section>
-            <form method="POST" action="negocio/validarLogIn.php">  
+            <form method="POST" action="sesion/validarLogIn.php">  
         
                 <input name="nombreUsuario" type="text" placeholder="Nombre de Usuario" required> <br><br>
                 <input name="pass" type="password" placeholder="Contraseña" required> <br>
-                <a href="./negocio/recuperarPass.php">¿olvidó su contraseña?</a>
+                <a href="./sesion/recuperarPass.php">¿olvidó su contraseña?</a>
                 <br><br>
 
                 <input type="submit" value="Iniciar Sesión">
 
-                <button type="button" onClick="location.href = './registrarUsuario.php'">
+                <button type="button" onClick="location.href = './usuario/registrarUsuario.php'">
                     Registrarse
                 </button>
         

@@ -16,10 +16,6 @@ include './barraSesion.php';
        
         <section>  
         
-            <button type="button" onClick="location.href = './CrearForo.php '">
-                Crear Foro
-            </button>
-
             <button type="button" onClick="location.href = ''">
                 Hacer Pregunta
             </button>

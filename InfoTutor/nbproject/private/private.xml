@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/InfoTutor/sesion/comprobarConexion.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/menu.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/index.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/sesion/cerrarSesion.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/menuAdmin.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/sesion/validarLogIn.php</file>
-            <file>file:/C:/xampp/htdocs/InfoTutor/barraSesion.php</file>
+            <file>file:/C:/xampp/htdocs/InfoTutor/CursosDisponibles.php</file>
+            <file>file:/C:/xampp/htdocs/InfoTutor/negocio/LogicaCurso.php</file>
+            <file>file:/C:/xampp/htdocs/InfoTutor/data/dataCurso.php</file>
+            <file>file:/C:/xampp/htdocs/InfoTutor/AdministracionUsuarios.php</file>
         </group>
     </open-files>
 </project-private>
