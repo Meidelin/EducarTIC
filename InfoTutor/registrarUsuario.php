@@ -29,7 +29,7 @@
                 
                 <input name="accion" type="hidden" value="1">
                 <input name="tipo" type="hidden" value="estudiante">
-                <input name="nivel" type="hidden" value="0">
+                <input name="nivel" type="hidden" value="1">
                 
                 <input type="submit" value="Registrarse">
 
