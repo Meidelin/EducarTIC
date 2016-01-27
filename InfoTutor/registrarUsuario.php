@@ -1,11 +1,10 @@
-<html>
+﻿<html>
 
 <!-- Interfaz de registro de usuarios !-->
 
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
-        <script type="text/javascript" src="./js/validacionesRegistro.js"></script>
 
         <title></title>
     </head>
