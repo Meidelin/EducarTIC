@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php include"barraSesion.php";
 include 'negocio/LogicaUsuario.php';
 ?>
@@ -8,10 +9,9 @@ include 'negocio/LogicaUsuario.php';
     </head>
     <body>
     
-    <h1> ADMINISTRACIÓN DE USUARIOS </h1>
-            <button type="button" onClick="location.href='RegistrarAdmin.php'">
-                    Agregar Administrador
-        </button>
+    <h1 class="h1"> Administración de usuarios </h1>
+    <br><br><br>
+
     <br><br><br><br>
         
     <center>

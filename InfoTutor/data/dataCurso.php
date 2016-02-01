@@ -94,3 +94,17 @@ function getCursosMatriculablesA($nivel){
     return $cursos;
     
 }
+
+function getTemasCurso($sig){
+
+    $con = getConexion();
+
+    $consulta = "call pa_BuscarTemasCursosM('$sig');";
+
+    $temas = mysqli_query($con, $consulta);
+
+    desconectar($con);
+
+    return $temas;   
+
+}

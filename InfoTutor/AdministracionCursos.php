@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php 
 include './barraSesion.php';
 ?>
@@ -5,9 +6,13 @@ include './barraSesion.php';
     <head>
         <title>Curso</title>
     </head>
+
+    <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
+
     <body>
-<br><br>
-        <h1>Administracion de Cursos </h1>
+
+        <h1 class="h1">Administración de Cursos </h1>
+        <br><br><br><br><br><br>
         <?php 
             include './data/CursoData.php';
 

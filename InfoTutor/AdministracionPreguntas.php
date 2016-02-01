@@ -1,13 +1,16 @@
+<!DOCTYPE html>
 <?php 
 include './barraSesion.php';
 ?>
 <html lang="es">
     <head>
         <title>Pregunta</title>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
     </head>
     <body >
-<br><br>
-        <h1>Administracion de Preguntas </h1>
+
+        <h1 class="h1">Administración de Preguntas </h1>
+        <br><br><br>
         <?php 
         include './data/PreguntaData.php';
 

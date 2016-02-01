@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include"barraSesion.php";
 include 'negocio/LogicaUsuario.php';
@@ -13,18 +14,14 @@ $row=$usuario->fetch_assoc();
         <meta charset="UTF-8">
         <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
         <script type="text/javascript" src="./js/InformacionUsuario.js"></script>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
         <title></title>
     </head>
     <body>
-    
-    <h1> CONFIGURACIÓN DE CUENTA </h1>
-    <button type="button" onClick="cambiarFormularioDatos()">
-            DatosPersonales
-        </button>
-    <button type="button" onClick="cambiarFormularioPass()">
-            CambiarContraseña
-        </button>
-    <br><br><br><br>
+
+    <h1 class="h1"> Configuración de Cuenta </h1>
+
+    <br><br><br><br><br><br>
     
         <section id="datos">
             <center>
@@ -94,6 +91,12 @@ $row=$usuario->fetch_assoc();
             </form> 
             </center>
         </section>
+
+        <?php if($_GET['a']!=2){
+        echo "<script> cambiarFormularioDatos()</script>";
+        }else{
+        echo "<script>cambiarFormularioPass()</script>";
+        }?>
 
     </body>
 </html>

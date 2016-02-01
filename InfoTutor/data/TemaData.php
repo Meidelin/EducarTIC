@@ -1,6 +1,6 @@
 <?php
 
-include 'Conexion.php';
+include_once 'Conexion.php';
 
 $res = null;
 
@@ -84,4 +84,16 @@ function obtenerTemaNombre($nom){
 }
 
 
-?>
+function getTemaVisto($idTema){
+
+    $con = getConexion();
+    
+    $tema = mysqli_query($con,"SELECT IdTema from tema where IdTema='$idTema';");
+    
+    desconectar($con);
+    
+    return $tema;
+
+}
+
+//php mysql_close($con); 

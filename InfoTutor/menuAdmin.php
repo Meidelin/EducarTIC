@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php 
 include './barraSesion.php';
 ?>
@@ -7,8 +8,9 @@ include './barraSesion.php';
         <title></title>
     </head>
     <body>
+    	<link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
     
-    <h1> MENÚ ADMINISTRACIÓN </h1>
+    <h1 class="h1"> Menú Administración </h1>
     
     <br><br><br><br><br><br>
         

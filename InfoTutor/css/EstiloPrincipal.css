@@ -1,0 +1,24 @@
+.bg {
+    background: url(../images/fondo.png) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.h1{
+
+	color: white; 
+	font: 180% sans-serif;    
+    font-family: "Trebuchet MS", "Trebuchet MS", bold;
+    position: fixed;
+
+}
+
+.barrasesion{
+
+	color: white;
+	//position: fixed; 
+	float: right;
+
+}

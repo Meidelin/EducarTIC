@@ -1,4 +1,5 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 
 <!-- Interfaz de registro de usuarios !-->
 

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php include"barraSesion.php";
 include 'data/dataCurso.php';
 include 'negocio/LogicaMatricula.php';
@@ -24,9 +25,14 @@ $row=$curso->fetch_assoc();
     <center>
         <h1>Contenidos del Curso</h1>
        <?php
+            $temas=getTemasCurso($_GET['curso']);
             
-            //$result = busquedaUsuarios($opcion, $busq); //se realiza la busqueda
+            while($row=$temas->fetch_assoc()){
 
+                echo $row['NombreT'];
+
+            }
+ 
         ?>
         <section>
 

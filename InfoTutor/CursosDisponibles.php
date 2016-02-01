@@ -1,14 +1,17 @@
+<!DOCTYPE html>
 <?php include"barraSesion.php";
 include 'negocio/LogicaCurso.php';
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">  <!-- Interfaz de administracion de usuarios !-->
+        <meta charset="UTF-8">  <!-- Interfaz de Matricula de cursos !-->
+        <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
         <title></title>
     </head>
     <body>
     
-    <h1> CURSOS DISPONIBLES </h1>
+    <h1 class="h1"> Cursos Disponibles </h1>
     <br><br><br><br>
         
     <center>
@@ -57,7 +60,9 @@ include 'negocio/LogicaCurso.php';
                 echo '<section id="seccion">';
 
                 if(is_object($result)){
-                    if( $result->num_rows == 0) die("No hay registros para mostrar");
+                    if( $result->num_rows == 0) die("En este momento no hay cursos disponibles, 
+                        suba su nivel completando los cursos
+                    que actualmente tiene para abrir nuevos en esta sección.");
 
                 echo "<table border=1 cellpadding=4 cellspacing=0>";
                 echo "<tr>
@@ -96,7 +101,7 @@ include 'negocio/LogicaCurso.php';
             $i=0;
             $vacio=true;
 
-            echo "<table border=1 cellpadding=4 cellspacing=0>";
+            echo "<table id='cursosDisp' border=1 cellpadding=4 cellspacing=0>";
             echo "<tr>
             <th colspan=6> Cursos Disponibles </th>
             <tr>
@@ -137,13 +142,19 @@ include 'negocio/LogicaCurso.php';
                     }
                 }
 
-                if($vacio===true){
-                    echo "En este momento no hay cursos disponibles, suba su nivel completando los cursos
-                    que actualmente tiene para abrir nuevos en esta sección.";
-                }
-
                 $i++;
 
+                }
+
+                if($vacio===true){
+                    echo "En este momento no hay cursos disponibles, suba su nivel completando los cursos
+                    que actualmente tiene para abrir nuevos en esta sección.
+
+                    <script type='text/javascript'> 
+                        document.getElementById('cursosDisp').style.visibility = 'hidden';
+                    </script>
+
+                    ";
                 }
 
         }

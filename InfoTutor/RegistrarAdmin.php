@@ -1,4 +1,5 @@
-﻿<?PHP
+﻿<!DOCTYPE html>
+<?PHP
 include 'barraSesion.php';
 ?>
 <!-- Interfaz para registrar nuevos administradores, solo accesible por otro administrador !-->
@@ -7,12 +8,13 @@ include 'barraSesion.php';
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
 
         <title></title>
     </head>
     <body>
     
-    <h1> REGISTRAR ADMINISTRADORES </h1>
+    <h1 class="h1" style="position:relative; top:-6%; z-index:-1;"> Registrar Administrador </h1>
     
     <br><br><br><br><br><br>
         

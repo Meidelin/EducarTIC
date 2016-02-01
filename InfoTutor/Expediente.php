@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php include"barraSesion.php";
 include 'negocio/LogicaUsuario.php';
 include 'negocio/LogicaCurso.php';
@@ -5,12 +6,14 @@ include 'negocio/LogicaCurso.php';
 <html>
     <head>
         <meta charset="UTF-8">  <!-- Interfaz de administracion de usuarios !-->
+        <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
         <title></title>
     </head>
     <body>
     
-    <h1> EXPEDIENTE </h1>
-    <br><br><br><br>
+    <h1 class="h1"> Expediente </h1>
+    <br><br><br><br><br><br>
         
     <center>
        <?php
@@ -39,7 +42,7 @@ include 'negocio/LogicaCurso.php';
 
                 echo '<section id="seccion">';
         
-                if( $result->num_rows == 0) die("No hay registros para mostrar");
+                if( $result->num_rows == 0) die("En este momento no tiene ningun curso matriculado");
 
                 echo "<table border=1 cellpadding=4 cellspacing=0>";
                 echo "<tr>

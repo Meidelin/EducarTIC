@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php 
 //include './barraSesion.php';
 include 'AdministracionTemas.php';

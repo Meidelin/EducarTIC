@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include"barraSesion.php";
 include 'negocio/LogicaUsuario.php';
@@ -14,12 +15,13 @@ $row=$usuario->fetch_assoc();
         <meta charset="UTF-8">
         <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
         <script type="text/javascript" src="./js/InformacionUsuario.js"></script>
+        <link href="css/EstiloPrincipal.css" rel="stylesheet" type="text/css" />
         <title></title>
     </head>
     <body>
     
-    <h1> INFORMACIÓN DE <?php echo $row['Usuario'];?> </h1>
-        
+    <h1 class="h1"> Información de <?php echo $row['Usuario'];?> </h1>
+        <br><br>
             <h2>Tipo de Usuario: <?php echo $row['Tipo'];?></h2>
 
     <br><br><br><br>
@@ -62,11 +64,11 @@ $row=$usuario->fetch_assoc();
                     Nivel:
                     <input id="nivel" name="nivel" type="number" placeholder="Nivel" required 
                        value="<?php echo $row['Nivel'];?>" disabled>
-                    <br><br>
+                    
                 
             <?php } ?>
                 
-                
+                <br><br>
                 <input id="cambiar" type="submit" value="Aplicar Cambios" style="visibility:hidden;">
                 
                 
