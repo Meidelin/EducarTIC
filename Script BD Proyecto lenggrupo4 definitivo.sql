@@ -11,24 +11,24 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema lenggrupo4
+-- Schema lenggrupo5
 -- -----------------------------------------------------
 -- 
 -- 
 
 -- -----------------------------------------------------
--- Schema lenggrupo4
+-- Schema lenggrupo5
 --
 -- 
 -- 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `lenggrupo4` DEFAULT CHARACTER SET utf8 ;
-USE `lenggrupo4` ;
+CREATE SCHEMA IF NOT EXISTS `lenggrupo5` DEFAULT CHARACTER SET utf8 ;
+USE `lenggrupo5` ;
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`curso`
+-- Table `lenggrupo5`.`curso`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`curso` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`curso` (
   `Sigla` VARCHAR(6) NOT NULL,
   `Nombre` VARCHAR(50) NOT NULL,
   `Descripcion` VARCHAR(100) NOT NULL,
@@ -40,9 +40,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`tema`
+-- Table `lenggrupo5`.`tema`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`tema` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`tema` (
   `siglaCursoT` VARCHAR(6) NOT NULL,
   `IdTema` INT(11) NOT NULL AUTO_INCREMENT,
   `NombreT` VARCHAR(100) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`tema` (
   INDEX `SiglaCursoT` (`siglaCursoT` ASC),
   CONSTRAINT `SiglaCursoT`
     FOREIGN KEY (`siglaCursoT`)
-    REFERENCES `lenggrupo4`.`curso` (`Sigla`)
+    REFERENCES `lenggrupo5`.`curso` (`Sigla`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -58,9 +58,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`contenido`
+-- Table `lenggrupo5`.`contenido`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`contenido` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`contenido` (
   `IdContenido` INT(11) NOT NULL AUTO_INCREMENT,
   `IdTemaC` INT(11) NOT NULL,
   `ContenidoT` VARCHAR(45) NOT NULL,
@@ -68,15 +68,15 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`contenido` (
   INDEX `FK_idTema` (`IdTemaC` ASC),
   CONSTRAINT `FK_idTema`
     FOREIGN KEY (`IdTemaC`)
-    REFERENCES `lenggrupo4`.`tema` (`IdTema`))
+    REFERENCES `lenggrupo5`.`tema` (`IdTema`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`usuario`
+-- Table `lenggrupo5`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`usuario` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`usuario` (
   `IdUsuario` INT(11) NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(50) NULL DEFAULT NULL,
   `Apellidos` VARCHAR(100) NULL DEFAULT NULL,
@@ -93,9 +93,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`foro`
+-- Table `lenggrupo5`.`foro`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`foro` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`foro` (
   `IdForo` INT(11) NOT NULL AUTO_INCREMENT,
   `IdTemaF` INT(11) NOT NULL,
   `FechaCreacion` DATE NOT NULL,
@@ -107,18 +107,18 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`foro` (
   INDEX `IdTemaF_idx` (`IdTemaF` ASC),
   CONSTRAINT `IdTemaF`
     FOREIGN KEY (`IdTemaF`)
-    REFERENCES `lenggrupo4`.`tema` (`IdTema`),
+    REFERENCES `lenggrupo5`.`tema` (`IdTema`),
   CONSTRAINT `IdUsuarioF`
     FOREIGN KEY (`IdUsuarioF`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`))
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`matricula`
+-- Table `lenggrupo5`.`matricula`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`matricula` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`matricula` (
   `siglaCursoM` VARCHAR(6) NOT NULL,
   `idUsuarioM` INT(11) NOT NULL,
   PRIMARY KEY (`siglaCursoM`, `idUsuarioM`),
@@ -126,12 +126,12 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`matricula` (
   INDEX `idUsuarioM` (`idUsuarioM` ASC),
   CONSTRAINT `idUsuarioM`
     FOREIGN KEY (`idUsuarioM`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`)
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `siglaCursoM`
     FOREIGN KEY (`siglaCursoM`)
-    REFERENCES `lenggrupo4`.`curso` (`Sigla`)
+    REFERENCES `lenggrupo5`.`curso` (`Sigla`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -139,9 +139,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`pregunta`
+-- Table `lenggrupo5`.`pregunta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`pregunta` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`pregunta` (
   `IdPregunta` INT(11) NOT NULL AUTO_INCREMENT,
   `IdTemaP` INT(11) NOT NULL,
   `Enunciado` VARCHAR(500) NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`pregunta` (
   PRIMARY KEY (`IdPregunta`),
   INDEX `IdTemaP` (`IdTemaP` ASC),
   UNIQUE INDEX `Enunciado_UNIQUE` (`Enunciado` ASC),
-  CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTemaP`) REFERENCES `lenggrupo4`.`tema` (`IdTema`)
+  CONSTRAINT `pregunta_ibfk_1` FOREIGN KEY (`IdTemaP`) REFERENCES `lenggrupo5`.`tema` (`IdTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -160,16 +160,16 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`preguntascuestionario`
+-- Table `lenggrupo5`.`preguntascuestionario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`preguntascuestionario` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`preguntascuestionario` (
   `IdCuestionario` INT(11) NOT NULL AUTO_INCREMENT,
   `IdPregunta` INT(11) NOT NULL,
   PRIMARY KEY (`IdCuestionario`, `IdPregunta`),
   INDEX `IdPregunta` (`IdPregunta` ASC),
   CONSTRAINT `preguntascuestionario_ibfk_2`
     FOREIGN KEY (`IdPregunta`)
-    REFERENCES `lenggrupo4`.`pregunta` (`IdPregunta`)
+    REFERENCES `lenggrupo5`.`pregunta` (`IdPregunta`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -177,16 +177,16 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`practica`
+-- Table `lenggrupo5`.`practica`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`practica` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`practica` (
   `IdPractica` INT(11) NOT NULL,
   `RespuestasCorrectas` INT(11) NOT NULL,
   `RespuestasIncorrectas` INT(11) NOT NULL,
   PRIMARY KEY (`IdPractica`),
   CONSTRAINT `IdCuestionario`
     FOREIGN KEY (`IdPractica`)
-    REFERENCES `lenggrupo4`.`preguntascuestionario` (`IdCuestionario`)
+    REFERENCES `lenggrupo5`.`preguntascuestionario` (`IdCuestionario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -194,9 +194,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`practicausuario`
+-- Table `lenggrupo5`.`practicausuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`practicausuario` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`practicausuario` (
   `IdPracticaU` INT(11) NOT NULL,
   `IdUsuarioPra` INT(11) NOT NULL,
   `Fecha` DATE NOT NULL,
@@ -207,17 +207,17 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`practicausuario` (
   INDEX `SiglaCursoPrac_idx` (`SiglaCursoPrac` ASC),
   CONSTRAINT `practicausuario_ibfk_1`
     FOREIGN KEY (`IdUsuarioPra`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`)
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `practicausuario_ibfk_2`
     FOREIGN KEY (`IdPracticaU`)
-    REFERENCES `lenggrupo4`.`practica` (`IdPractica`)
+    REFERENCES `lenggrupo5`.`practica` (`IdPractica`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `SiglaCursoPrac`
     FOREIGN KEY (`SiglaCursoPrac`)
-    REFERENCES `lenggrupo4`.`curso` (`Sigla`)
+    REFERENCES `lenggrupo5`.`curso` (`Sigla`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -225,9 +225,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`preguntasusuario`
+-- Table `lenggrupo5`.`preguntasusuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`preguntasusuario` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`preguntasusuario` (
   `IdPreguntaUsuario` INT(11) NOT NULL AUTO_INCREMENT,
   `IdUsuarioPre` INT(11) NOT NULL,
   `IdTemaPre` INT(11) NOT NULL,
@@ -240,12 +240,12 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`preguntasusuario` (
   INDEX `preguntasusuario_ibfk_2` (`IdUsuarioPre` ASC),
   CONSTRAINT `preguntasusuario_ibfk_1`
     FOREIGN KEY (`IdTemaPre`)
-    REFERENCES `lenggrupo4`.`tema` (`IdTema`)
+    REFERENCES `lenggrupo5`.`tema` (`IdTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `preguntasusuario_ibfk_2`
     FOREIGN KEY (`IdUsuarioPre`)
-    REFERENCES `lenggrupo4`.`matricula` (`idUsuarioM`)
+    REFERENCES `lenggrupo5`.`matricula` (`idUsuarioM`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -253,9 +253,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`prueba`
+-- Table `lenggrupo5`.`prueba`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`prueba` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`prueba` (
   `IdPrueba` INT(11) NOT NULL,
   `Calificacion` DECIMAL(4,0) NOT NULL,
   `PuntosTotales` INT(11) NOT NULL,
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`prueba` (
   PRIMARY KEY (`IdPrueba`),
   CONSTRAINT `IdPrueba`
     FOREIGN KEY (`IdPrueba`)
-    REFERENCES `lenggrupo4`.`preguntascuestionario` (`IdCuestionario`)
+    REFERENCES `lenggrupo5`.`preguntascuestionario` (`IdCuestionario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -273,9 +273,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`pruebausuario`
+-- Table `lenggrupo5`.`pruebausuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`pruebausuario` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`pruebausuario` (
   `IdPruebaU` INT(11) NOT NULL,
   `IdUsuarioPru` INT(11) NOT NULL,
   `Fecha` DATE NOT NULL,
@@ -286,17 +286,17 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`pruebausuario` (
   INDEX `SiglaCursoPru_idx` (`SiglaCursoPru` ASC),
   CONSTRAINT `pruebausuario_ibfk_1`
     FOREIGN KEY (`IdUsuarioPru`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`)
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `pruebausuario_ibfk_2`
     FOREIGN KEY (`IdPruebaU`)
-    REFERENCES `lenggrupo4`.`prueba` (`IdPrueba`)
+    REFERENCES `lenggrupo5`.`prueba` (`IdPrueba`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `SiglaCursoPru`
     FOREIGN KEY (`SiglaCursoPru`)
-    REFERENCES `lenggrupo4`.`curso` (`Sigla`)
+    REFERENCES `lenggrupo5`.`curso` (`Sigla`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -304,9 +304,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`recomendacion`
+-- Table `lenggrupo5`.`recomendacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`recomendacion` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`recomendacion` (
   `IdRecomendacion` INT(11) NOT NULL AUTO_INCREMENT,
   `IdPruebaRec` INT(11) NOT NULL,
   `Descripcion` VARCHAR(1000) NOT NULL,
@@ -314,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`recomendacion` (
   INDEX `recomendacion_ibfk_1` (`IdPruebaRec` ASC),
   CONSTRAINT `recomendacion_ibfk_1`
     FOREIGN KEY (`IdPruebaRec`)
-    REFERENCES `lenggrupo4`.`prueba` (`IdPrueba`)
+    REFERENCES `lenggrupo5`.`prueba` (`IdPrueba`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -322,9 +322,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`respuestaforo`
+-- Table `lenggrupo5`.`respuestaforo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`respuestaforo` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`respuestaforo` (
   `IdRespuestaForo` INT(11) NOT NULL AUTO_INCREMENT,
   `IdForoR` INT(11) NOT NULL,
   `Respuesta` VARCHAR(500) NOT NULL,
@@ -335,12 +335,12 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`respuestaforo` (
   INDEX `idUsuario_idx` (`IdUsuarioR` ASC),
   CONSTRAINT `IdForoR`
     FOREIGN KEY (`IdForoR`)
-    REFERENCES `lenggrupo4`.`foro` (`IdForo`)
+    REFERENCES `lenggrupo5`.`foro` (`IdForo`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `IdUsuarioR`
     FOREIGN KEY (`IdUsuarioR`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`)
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -348,9 +348,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`respuestaincorrecta`
+-- Table `lenggrupo5`.`respuestaincorrecta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`respuestaincorrecta` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`respuestaincorrecta` (
   `IdRespuestaIncorrecta` INT(11) NOT NULL AUTO_INCREMENT,
   `IdPreguntaRI` INT(11) NOT NULL,
   `Respuesta` VARCHAR(500) NOT NULL,
@@ -360,12 +360,12 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`respuestaincorrecta` (
   INDEX `IdPreguntaRI` (`IdPreguntaRI` ASC),
   CONSTRAINT `IdCuestionarioRI`
     FOREIGN KEY (`IdCuestionarioRI`)
-    REFERENCES `lenggrupo4`.`preguntascuestionario` (`IdCuestionario`)
+    REFERENCES `lenggrupo5`.`preguntascuestionario` (`IdCuestionario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `IdPreguntaRI`
     FOREIGN KEY (`IdPreguntaRI`)
-    REFERENCES `lenggrupo4`.`preguntascuestionario` (`IdPregunta`)
+    REFERENCES `lenggrupo5`.`preguntascuestionario` (`IdPregunta`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -373,9 +373,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `lenggrupo4`.`TemasVistos`
+-- Table `lenggrupo5`.`TemasVistos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lenggrupo4`.`TemasVistos` (
+CREATE TABLE IF NOT EXISTS `lenggrupo5`.`TemasVistos` (
   `idTemasVisto` INT NOT NULL,
   `idUsuarioTV` INT NOT NULL,
   `siglaCursoV` VARCHAR(6) NOT NULL,
@@ -384,17 +384,17 @@ CREATE TABLE IF NOT EXISTS `lenggrupo4`.`TemasVistos` (
   INDEX `siglaCursoV_idx` (`siglaCursoV` ASC),
   CONSTRAINT `idTemasVisto`
     FOREIGN KEY (`idTemasVisto`)
-    REFERENCES `lenggrupo4`.`tema` (`IdTema`)
+    REFERENCES `lenggrupo5`.`tema` (`IdTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `idUsuarioTV`
     FOREIGN KEY (`idUsuarioTV`)
-    REFERENCES `lenggrupo4`.`usuario` (`IdUsuario`)
+    REFERENCES `lenggrupo5`.`usuario` (`IdUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `siglaCursoV`
     FOREIGN KEY (`siglaCursoV`)
-    REFERENCES `lenggrupo4`.`curso` (`Sigla`)
+    REFERENCES `lenggrupo5`.`curso` (`Sigla`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
