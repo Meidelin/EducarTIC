@@ -9,16 +9,15 @@ include './barraSesion.php';
     </head>
     <body >
 
-        <h1 class="h1">Administración de Preguntas </h1>
-        <br><br><br>
+        
         <?php 
         include './data/PreguntaData.php';
 
          // muestra todas las preguntas 
-	        if (isset($_POST['vertodos'])){                    
+	        //if (isset($_POST['vertodos'])){                    
            	           $res=obtenerPregunta();
-
-	        }else  if(isset($_POST['buscarpregunta']) and $_POST['seleccion'] == 'Tipo'){
+		
+			 if(isset($_POST['buscarpregunta']) and $_POST['seleccion'] == 'Tipo'){
                //se llama a la funcion que busca la pregunta por tipo
                 $res=obtenerPreguntaTipo($_POST['pregunta']);	
 
@@ -33,6 +32,10 @@ include './barraSesion.php';
         ?>
 
 
+        <div class="container">
+
+<h1 class="h1">Administración de Preguntas </h1>
+        <br><br><br><br><br><br>
 <!-- Formulario que carga un combo para indicar el filtro de busqueda -->
  <form method="POST" action="">
  	<input type="hidden" name="buscarpregunta" />
@@ -43,12 +46,15 @@ include './barraSesion.php';
  			<option value="Enunciado">Enunciado</option>
  		</select>
  		<input name="pregunta" type="text">
- 		<input type="submit" value="Buscar"> </h4>
+ 		<input type="submit"  class="btn btn-info" value="Buscar"> </h4>
  </form>
 
   <form method="POST" action="">  
        <input type="hidden" name="vertodos" />
-       <input type="submit" value="Ver todos"> 
+       <input type="submit"   class="btn btn-info" value="Ver todos"> 
+       
+	<!-- envia al archivo insertarpregunta -->	
+	<a class="btn btn-default" href="./insertarpregunta.php" >Agregar nueva pregunta</a>
     </form>
 
 <br><br>
@@ -56,7 +62,7 @@ include './barraSesion.php';
 
 <!-- Tabla que cargara los datos que se han solicitado en el form anterior -->
 <?php if($res!=null){?>
-<table border="1">
+<table class="table table-striped">
 	<tr>
 		<th>Enunciado</th>
 		<th>Respuesta</th>
@@ -84,23 +90,25 @@ include './barraSesion.php';
 			    <input type="hidden" name="resp" value= "<?php echo $fila['Respuesta']; ?>" /><!-- envia Respuesta-->
 			    <input type="hidden" name="val" value= <?php echo $fila['Valor']; ?> /> <!-- envia Valor-->
 			    <input type="hidden" name="tip" value= <?php echo $fila['Tipo']; ?> /> <!-- envia Tipo-->
-			    <input href="./editarpregunta.php" type="submit" value="Editar" />
+ 				<span class="glyphicon glyphicon-pencil" ><input class="btn btn-success" href="./editarpregunta.php" type="submit" value="Editar" />
 			</form>
 		<td>
 			<form action="" method="post"><!-- boton eliminar que envia los parametros -->
 				<input type="hidden" name="eliminar"  value="si" />
 				<input type="hidden" name="idpreg" value= <?php echo $fila['IdPregunta']; ?> /> <!-- envia idpregunta-->
 				<input type="hidden" name="idtem" value= <?php echo $fila['IdTemaP']; ?> /> <!-- envia idtema -->
-				<input type="submit" value="Eliminar" />
+				 <span class="glyphicon glyphicon-trash" ><input class="btn btn-danger" type="submit" value="Eliminar" />
 			</form>
 		</td>
 	</tr>
 
 	<?php } ?>
 	</table>
-	<?php } else { echo "No se han encontrado preguntas";  }?>
+	<?php } else { echo "<div class='alert alert-warning'>No se han encontrado preguntas</div>";  }?>
 	<br><br>
-	<!-- envia al archivo insertarpregunta -->
-	<a href="./insertarpregunta.php" >Agregar nueva pregunta</a>
+
+</div>	
+
+
    </body>
 </html>
